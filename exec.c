@@ -4,11 +4,11 @@
 static instruction_t instructions[] = {
 {"push", push},
 {"pall", pall},
-{"pint", pint};
-{"pop", pop};
-{"swap", swap};
-{"add", add};
-{"nop", nop};
+{"pint", pint},
+{"pop", pop},
+{"swap", swap},
+{"add", add},
+{"nop", nop},
 {NULL, NULL}
 };
 
@@ -28,9 +28,9 @@ int flag = 0;
 	{
 		char *opcode;
 
-		buffer[strcspn(buff, "\n")] = '\0'; /* Remove white space */
+		buff[strcspn(buff, "\n")] = '\0';
 
-		opcode = strtok(buff, " "); /* Tokenize instruction */
+		opcode = strtok(buff, " ");
 
 		if (opcode == NULL)
 		{

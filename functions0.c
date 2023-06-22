@@ -49,47 +49,31 @@ bool check_int(const char *str)
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node, *temp;
-	int i;
+	stack_t *new_node;
+	int atoi_value;
+	char *arg = strtok(NULL, " ");
 
-    new_node = malloc(sizeof(stack_t));
+	if (arg == NULL || !check_int(arg))
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	atoi_value = atoi(arg);
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (arg == NULL)
+
+	new_node->n = atoi_value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+
+	if (*stack != NULL)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		(*stack)->prev = new_node;
 	}
-	for (i = 0; arg[1][i]; i++)
-	{
-		if (arg[1][i] == '-' && i == 0)
-			continue;
-		if (arg[1][i] < '0' || arg[1][i] > '9')
-		{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-		}
-	}
-	new_node->n = atoi(arg[1]);
-	if (mode_check(*stack) == STACK) /* STACK */
-	{
-		temp = (*stack)->next;
-		new_node->prev = *stack;
-		new_node->next = temp;
-		if (temp)
-			temp->prev = new_node;
-		(*stack)->next = new_node;
-	}
-	else /* QUEUE mode */
-	{
-		temp = *stack;
-		while (temp->next)
-			temp = temp->next;
-		new_node->prev = temp;
-		new_node->next = NULL;
-		temp->next = new_node;
-	}
+	*stack = new_node;
 }

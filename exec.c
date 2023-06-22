@@ -2,14 +2,14 @@
 
 
 static instruction_t instructions[] = {
-	{"push", push},
-	{"pall", pall},
-    {"pint", pint};
-    {"pop", pop};
-    {"swap", swap};
-    {"add", add};
-    {"nop", nop};
-	{NULL, NULL}
+{"push", push},
+{"pall", pall},
+{"pint", pint};
+{"pop", pop};
+{"swap", swap};
+{"add", add};
+{"nop", nop};
+{NULL, NULL}
 };
 
 /**
@@ -18,9 +18,9 @@ static instruction_t instructions[] = {
  */
 void exec_(FILE *file)
 {
-	int line_number = 1, i;
-    char buff[256];
-    int flag = 0;
+int line_number = 1, i;
+char buff[256];
+int flag = 0;
 
 	stack_t *stack = NULL;
 

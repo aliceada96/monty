@@ -4,17 +4,17 @@
  * main - entry point
  * @argc: number of args
  * @argv: the array of args
- * 
- * Return: Exit success if succesful, else exit fail 
- * 
+ *
+ * Return: Exit success if succesful, else exit fail
+ *
 */
 
 int main(int argc, char *argv[])
 {
-    FILE *file;
-    char *filename;
+FILE *file;
+char *filename;
 
-	(void) argv;
+(void) argv;
 
 	if (argc != 2)
 	{

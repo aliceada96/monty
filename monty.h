@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+extern char **arg;
+#define STACK 0
+#define QUEUE 1
+#define DELIM " \n\t\a\b"
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,7 +43,7 @@ void (*f)(stack_t **stack, unsigned int line_number);
 
 void exec_(FILE *file);
 
-void push(stack_t **stack, unsigned int value);
+void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 bool check_int(const char *str);
 void pint(stack_t **stack, unsigned int line_number);
@@ -47,5 +51,9 @@ void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+
+void free_stack(stack_t **stack);
+int init_stack(stack_t **stack);
+int mode_check(stack_t *stack);
 
 #endif /*MAIN_H*/
